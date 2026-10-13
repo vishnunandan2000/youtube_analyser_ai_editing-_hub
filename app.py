@@ -211,10 +211,13 @@ def build_app() -> gr.Blocks:
 app = build_app()
 
 if __name__ == "__main__":
-    logger.info("Starting GenAI Video Intelligence Studio server...")
+    import os
+    server_port = int(os.environ.get("PORT", 7860))
+    server_name = os.environ.get("HOST", "0.0.0.0")
+    logger.info(f"Starting GenAI Video Intelligence Studio server on {server_name}:{server_port}...")
     app.launch(
-        server_name="127.0.0.1",
-        server_port=7860,
+        server_name=server_name,
+        server_port=server_port,
         theme=theme,
         css=STUDIO_CSS,
         show_error=True
